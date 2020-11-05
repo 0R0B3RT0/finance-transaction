@@ -1,6 +1,14 @@
 package com.spring.financetransaction.domain.mapper;
 
-import org.springframework.stereotype.Component;
+import com.spring.financetransaction.domain.dto.AccountDTO;
+import com.spring.financetransaction.domain.entity.Account;
 
-@Component
-public class AccountMapper {}
+public class AccountMapper {
+
+  public static AccountDTO toDTO(Account entity) {
+    return AccountDTO.builder()
+        .accountId(entity.getId())
+        .documentNumber(entity.getDocumentNumber())
+        .build();
+  }
+}

@@ -9,4 +9,7 @@ import lombok.Value;
 @Value
 @Builder
 @JsonInclude(NON_NULL)
-public class AccountDTO {}
+public class AccountDTO {
+  private Long accountId;
+  private String documentNumber;
+}
