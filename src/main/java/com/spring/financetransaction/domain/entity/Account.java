@@ -17,5 +17,5 @@ import lombok.experimental.SuperBuilder;
 public class Account extends Model {
 
   @Column(name = "document_number")
-  private Long documentNumber;
+  private String documentNumber;
 }
