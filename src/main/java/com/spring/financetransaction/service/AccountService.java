@@ -5,7 +5,9 @@ import static com.spring.financetransaction.domain.mapper.AccountMapper.toDTO;
 import com.spring.financetransaction.controller.dto.AccountCreateDTO;
 import com.spring.financetransaction.domain.dto.AccountDTO;
 import com.spring.financetransaction.domain.entity.Account;
+import com.spring.financetransaction.domain.mapper.AccountMapper;
 import com.spring.financetransaction.domain.repository.AccountRepository;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +28,9 @@ public class AccountService {
     Account persistedAccount = accountRepository.save(account);
 
     return toDTO(persistedAccount);
+  }
+
+  public Optional<AccountDTO> findAccountById(long account_id) {
+    return accountRepository.findById(account_id).map(AccountMapper::toDTO);
   }
 }
