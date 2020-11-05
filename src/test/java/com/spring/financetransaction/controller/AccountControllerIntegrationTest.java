@@ -1,16 +1,18 @@
 package com.spring.financetransaction.controller;
 
 import static java.lang.String.format;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import com.spring.financetransaction.SpringControllerTest;
-import com.spring.financetransaction.controller.dto.AccountCreateDTO;
-import io.restassured.RestAssured;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
+
+import com.spring.financetransaction.SpringControllerTest;
+import com.spring.financetransaction.controller.dto.AccountCreateDTO;
+
+import io.restassured.RestAssured;
 
 public class AccountControllerIntegrationTest extends SpringControllerTest {
 
@@ -28,9 +30,8 @@ public class AccountControllerIntegrationTest extends SpringControllerTest {
         .post(CONTROLLER_PATH)
         .then()
         .assertThat()
-        .statusCode(HttpStatus.OK.value())
-        .body("documentNumber", equalTo(ACCOUNT_DOCUMENT))
-        .body("accountId", notNullValue());
+        .statusCode(HttpStatus.CREATED.value())
+        .header("Location", containsString(CONTROLLER_PATH));
   }
 
   @Test
@@ -65,7 +66,7 @@ public class AccountControllerIntegrationTest extends SpringControllerTest {
         .then()
         .assertThat()
         .statusCode(HttpStatus.OK.value())
-        .body("accountId", equalTo(ACCOUNT_ID))
-        .body("documentNumber", equalTo(ACCOUNT_DOCUMENT));
+        .body("account_id", equalTo(ACCOUNT_ID))
+        .body("document_number", equalTo(ACCOUNT_DOCUMENT));
   }
 }
