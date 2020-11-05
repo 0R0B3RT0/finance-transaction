@@ -1,11 +1,11 @@
 package com.spring.financetransaction.domain.entity;
 
 import static java.time.LocalDateTime.now;
-import static java.util.UUID.randomUUID;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
@@ -23,16 +23,16 @@ import org.springframework.data.domain.Persistable;
 @NoArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(of = "id")
-public abstract class Model implements Persistable<UUID> {
+public abstract class Model implements Persistable<Long> {
 
   @Id
-  @Column(columnDefinition = "uuid")
-  private UUID id;
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  private Long id;
 
   @Column(name = "created_at", nullable = false, updatable = false)
   private LocalDateTime createdAt;
 
-  @Column(nullable = false)
+  @Column(name = "enabled", nullable = false)
   private Boolean enabled;
 
   @Column(name = "updated_at", nullable = false)
@@ -43,7 +43,6 @@ public abstract class Model implements Persistable<UUID> {
 
   @PrePersist
   public void beforePersist() {
-    id = randomUUID();
     createdAt = now();
     updatedAt = createdAt;
     enabled = true;
@@ -55,7 +54,7 @@ public abstract class Model implements Persistable<UUID> {
   }
 
   @Override
-  public UUID getId() {
+  public Long getId() {
     return id;
   }
 

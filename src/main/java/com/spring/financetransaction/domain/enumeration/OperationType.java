@@ -1,3 +1,3 @@
 package com.spring.financetransaction.domain.enumeration;
 
-public class OperationType {}
+public enum OperationType {}
