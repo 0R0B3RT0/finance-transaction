@@ -57,7 +57,7 @@ public class AccountControllerIntegrationTest extends SpringControllerTest {
   }
 
   @Test
-  @Sql("/database/insert_account.sql")
+  @Sql("/db/insert_account.sql")
   public void mustBeFindWhenExistTheAccount() {
     RestAssured.given()
         .contentType(APPLICATION_JSON_VALUE)
