@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 import com.spring.financetransaction.BaseUnitTest;
@@ -32,6 +33,7 @@ public class AccountControllerTest extends BaseUnitTest {
   @Before
   public void setup() {
     accountDTO = AccountDTO.builder().documentNumber(ACCOUNT_DOCUMENT).build();
+    accountCreateDTO = AccountCreateDTO.builder().documentNumber(ACCOUNT_DOCUMENT).build();
     doReturn(accountDTO).when(accountService).createAccount(accountCreateDTO);
   }
 
@@ -39,7 +41,7 @@ public class AccountControllerTest extends BaseUnitTest {
   public void mustBaCreateNewAccountWhenHasValidDocument() {
     ResponseEntity<AccountDTO> account = accountController.createNewAccount(accountCreateDTO);
 
-    assertThat(account.getStatusCode(), equalTo(OK));
+    assertThat(account.getStatusCode(), equalTo(CREATED));
     verify(accountService).createAccount(accountCreateDTO);
   }
 

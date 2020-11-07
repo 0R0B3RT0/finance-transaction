@@ -7,6 +7,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.spring.financetransaction.controller.dto.AccountCreateDTO;
 import com.spring.financetransaction.domain.dto.AccountDTO;
 import com.spring.financetransaction.service.AccountService;
+import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,8 @@ public class AccountController {
   @PostMapping
   public ResponseEntity<AccountDTO> createNewAccount(
       @RequestBody AccountCreateDTO accountCreateDTO) {
-    return ResponseEntity.ok(accountService.createAccount(accountCreateDTO));
+    AccountDTO account = accountService.createAccount(accountCreateDTO);
+    return ResponseEntity.created(URI.create("/accounts/" + account.getAccountId())).build();
   }
 
   @GetMapping("/{accountId}")
