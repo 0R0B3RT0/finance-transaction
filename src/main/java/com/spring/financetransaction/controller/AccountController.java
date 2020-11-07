@@ -7,6 +7,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.spring.financetransaction.controller.dto.AccountCreateDTO;
 import com.spring.financetransaction.domain.dto.AccountDTO;
 import com.spring.financetransaction.service.AccountService;
+import com.spring.financetransaction.service.query.AccountQueryService;
 import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
   @Autowired private AccountService accountService;
+  @Autowired private AccountQueryService accountQueryService;
 
   @PostMapping
   public ResponseEntity<AccountDTO> createNewAccount(
@@ -37,7 +39,7 @@ public class AccountController {
   @GetMapping("/{accountId}")
   public ResponseEntity<AccountDTO> getAccountByID(
       @PathVariable(name = "accountId") Long accountId) {
-    return accountService
+    return accountQueryService
         .findAccountById(accountId)
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.notFound().build());

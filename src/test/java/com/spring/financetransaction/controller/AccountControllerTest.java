@@ -14,6 +14,7 @@ import com.spring.financetransaction.BaseUnitTest;
 import com.spring.financetransaction.controller.dto.AccountCreateDTO;
 import com.spring.financetransaction.domain.dto.AccountDTO;
 import com.spring.financetransaction.service.AccountService;
+import com.spring.financetransaction.service.query.AccountQueryService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -29,6 +30,7 @@ public class AccountControllerTest extends BaseUnitTest {
   private long ACCOUNT_ID = 321;
   @InjectMocks private AccountController accountController;
   @Mock private AccountService accountService;
+  @Mock private AccountQueryService accountQueryService;
 
   @Before
   public void setup() {
@@ -47,7 +49,7 @@ public class AccountControllerTest extends BaseUnitTest {
 
   @Test
   public void mustBeFindWhenExistTheAccount() {
-    doReturn(of(accountDTO)).when(accountService).findAccountById(ACCOUNT_ID);
+    doReturn(of(accountDTO)).when(accountQueryService).findAccountById(ACCOUNT_ID);
 
     ResponseEntity<AccountDTO> accountResponse = accountController.getAccountByID(ACCOUNT_ID);
 
@@ -57,7 +59,7 @@ public class AccountControllerTest extends BaseUnitTest {
 
   @Test
   public void mustNotFountWhenThereIsNotTheAccount() {
-    doReturn(empty()).when(accountService).findAccountById(ACCOUNT_ID);
+    doReturn(empty()).when(accountQueryService).findAccountById(ACCOUNT_ID);
 
     ResponseEntity<AccountDTO> accountResponse = accountController.getAccountByID(ACCOUNT_ID);
 

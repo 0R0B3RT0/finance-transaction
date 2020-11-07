@@ -1,9 +1,5 @@
 package com.spring.financetransaction.service;
 
-import static java.util.Optional.of;
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -15,7 +11,6 @@ import com.spring.financetransaction.domain.dto.AccountDTO;
 import com.spring.financetransaction.domain.entity.Account;
 import com.spring.financetransaction.domain.exception.ValidationException;
 import com.spring.financetransaction.domain.repository.AccountRepository;
-import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -23,8 +18,6 @@ import org.mockito.Mock;
 
 public class AccountServiceTest extends BaseUnitTest {
 
-  private static final String ACCOUNT_DOCUMENT = "12345678910";
-  private static final long ACCOUNT_ID = 123;
   private AccountCreateDTO accountCreateDTO;
   private AccountDTO accountDTO;
   private Account account;
@@ -60,15 +53,5 @@ public class AccountServiceTest extends BaseUnitTest {
     accountService.createAccount(accountCreateDTO);
 
     verifyNoMoreInteractions(accountRepository);
-  }
-
-  @Test
-  public void mustBeFindWhenExistTheAccount() {
-    doReturn(of(account)).when(accountRepository).findById(ACCOUNT_ID);
-
-    Optional<AccountDTO> account = accountService.findAccountById(ACCOUNT_ID);
-
-    assertThat(account.isPresent(), is(true));
-    assertThat(account.get(), equalTo(accountDTO));
   }
 }
