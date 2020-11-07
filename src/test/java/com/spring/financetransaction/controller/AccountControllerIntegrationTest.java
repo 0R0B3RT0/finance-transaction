@@ -5,14 +5,12 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import com.spring.financetransaction.SpringControllerTest;
+import com.spring.financetransaction.controller.dto.AccountCreateDTO;
+import io.restassured.RestAssured;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
-
-import com.spring.financetransaction.SpringControllerTest;
-import com.spring.financetransaction.controller.dto.AccountCreateDTO;
-
-import io.restassured.RestAssured;
 
 public class AccountControllerIntegrationTest extends SpringControllerTest {
 
