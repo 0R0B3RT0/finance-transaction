@@ -12,6 +12,7 @@ import com.spring.financetransaction.controller.dto.TransactionCreateDTO;
 import com.spring.financetransaction.domain.dto.TransactionDTO;
 import com.spring.financetransaction.domain.entity.Account;
 import com.spring.financetransaction.domain.entity.Transaction;
+import com.spring.financetransaction.domain.exception.NotFoundedException;
 import com.spring.financetransaction.domain.exception.ValidationException;
 import com.spring.financetransaction.domain.repository.AccountRepository;
 import com.spring.financetransaction.domain.repository.TransactionRepository;
@@ -62,7 +63,7 @@ public class TransactionServiceTest extends BaseUnitTest {
   @Test
   public void mustBeExceptionWhenThereIsNotAccount() {
     doReturn(Optional.empty()).when(accountRepository).findById(ACCOUNT_ID);
-    expectedException.expect(ValidationException.class);
+    expectedException.expect(NotFoundedException.class);
     expectedException.expectMessage("{accountId=not founded}");
 
     transactionService.createTransaction(transactionCreateDTO);

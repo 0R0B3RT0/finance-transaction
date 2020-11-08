@@ -41,8 +41,8 @@ public class AccountControllerIntegrationTest extends SpringControllerTest {
         .post(CONTROLLER_PATH)
         .then()
         .assertThat()
-        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-        .body("message", equalTo("{documentNumber=must not be null}"));
+        .statusCode(HttpStatus.BAD_REQUEST.value())
+        .body("message", equalTo("documentNumber: must not be null"));
   }
 
   @Test
@@ -52,7 +52,8 @@ public class AccountControllerIntegrationTest extends SpringControllerTest {
         .get(format("%s/%d", CONTROLLER_PATH, -1))
         .then()
         .assertThat()
-        .statusCode(HttpStatus.NOT_FOUND.value());
+        .statusCode(HttpStatus.NOT_FOUND.value())
+        .body("message", equalTo("account: not founded"));
   }
 
   @Test

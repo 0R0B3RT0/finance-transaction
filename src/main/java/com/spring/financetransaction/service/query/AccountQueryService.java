@@ -1,6 +1,8 @@
 package com.spring.financetransaction.service.query;
 
 import com.spring.financetransaction.domain.dto.AccountDTO;
+import com.spring.financetransaction.domain.entity.Account;
+import com.spring.financetransaction.domain.exception.NotFoundedException;
 import com.spring.financetransaction.domain.mapper.AccountMapper;
 import com.spring.financetransaction.domain.repository.AccountRepository;
 import java.util.Optional;
@@ -13,7 +15,10 @@ import org.springframework.stereotype.Service;
 public class AccountQueryService {
   @Autowired private AccountRepository accountRepository;
 
-  public Optional<AccountDTO> findAccountById(long account_id) {
-    return accountRepository.findById(account_id).map(AccountMapper::toDTO);
+  public AccountDTO findAccountById(long account_id) {
+    Optional<Account> account = accountRepository.findById(account_id);
+    if (account.isEmpty()) throw new NotFoundedException("account", "not founded");
+
+    return AccountMapper.toDTO(account.get());
   }
 }

@@ -52,8 +52,8 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         .post(CONTROLLER_PATH)
         .then()
         .assertThat()
-        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-        .body("message", equalTo("{accountId=not founded}"));
+        .statusCode(HttpStatus.NOT_FOUND.value())
+        .body("message", equalTo("accountId: not founded"));
   }
 
   @Test
@@ -66,8 +66,8 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         .post(CONTROLLER_PATH)
         .then()
         .assertThat()
-        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-        .body("message", equalTo("{accountId=must not be null}"));
+        .statusCode(HttpStatus.BAD_REQUEST.value())
+        .body("message", equalTo("accountId: must not be null"));
   }
 
   @Test
@@ -80,8 +80,8 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         .post(CONTROLLER_PATH)
         .then()
         .assertThat()
-        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-        .body("message", equalTo("{operationTypeId=must be valid}"));
+        .statusCode(HttpStatus.BAD_REQUEST.value())
+        .body("message", equalTo("operationTypeId: must be valid"));
   }
 
   @Test
@@ -94,8 +94,8 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         .post(CONTROLLER_PATH)
         .then()
         .assertThat()
-        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-        .body("message", equalTo("{operationTypeId=must not be null}"));
+        .statusCode(HttpStatus.BAD_REQUEST.value())
+        .body("message", equalTo("operationTypeId: must not be null"));
   }
 
   @Test
@@ -108,7 +108,7 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         .post(CONTROLLER_PATH)
         .then()
         .assertThat()
-        .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-        .body("message", equalTo("{amount=must not be null}"));
+        .statusCode(HttpStatus.BAD_REQUEST.value())
+        .body("message", equalTo("amount: must not be null"));
   }
 }

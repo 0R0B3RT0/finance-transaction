@@ -7,7 +7,7 @@ import com.spring.financetransaction.domain.dto.TransactionDTO;
 import com.spring.financetransaction.domain.entity.Account;
 import com.spring.financetransaction.domain.entity.Transaction;
 import com.spring.financetransaction.domain.enumeration.OperationType;
-import com.spring.financetransaction.domain.exception.ValidationException;
+import com.spring.financetransaction.domain.exception.NotFoundedException;
 import com.spring.financetransaction.domain.repository.AccountRepository;
 import com.spring.financetransaction.domain.repository.TransactionRepository;
 import java.util.Optional;
@@ -32,7 +32,7 @@ public class TransactionService {
 
     Optional<Account> account = accountRepository.findById(transactionCreateDTO.getAccountId());
 
-    if (account.isEmpty()) throw new ValidationException("accountId", "not founded");
+    if (account.isEmpty()) throw new NotFoundedException("accountId", "not founded");
 
     Transaction transaction =
         Transaction.builder()
