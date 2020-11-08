@@ -17,7 +17,7 @@ _Os comandos a baixo são baseados nos Sistemas Operacionais Linux e macOS._
 ```bash
 sudo docker-compose up
 ```
-### Compilar
+### Compilar e testar
 ```bash
 mvn clean install
 ```
@@ -25,6 +25,12 @@ mvn clean install
 ```bash
 mvn spring-boot:run
 ```
+
+### Features
+* [Create Account](documentation/account-create.md) : `POST /accounts`
+* [Find Account](documentation/account-find.md) : `GET /accounts/{accountId}`
+* [Create Transaction](documentation/transaction-create.md) : `POST /transactions`
+
 ### Monitoração
 [Hystrix](http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8080%2Factuator%2Fhystrix.stream)
 
