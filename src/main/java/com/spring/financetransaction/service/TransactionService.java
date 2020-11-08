@@ -38,7 +38,7 @@ public class TransactionService {
         Transaction.builder()
             .account(account.get())
             .operationType(operationType)
-            .amount(transactionCreateDTO.getAmount())
+            .amount(operationType.calculate(transactionCreateDTO.getAmount()))
             .build();
     Transaction transactionPersisted = transactionRepository.save(transaction);
 

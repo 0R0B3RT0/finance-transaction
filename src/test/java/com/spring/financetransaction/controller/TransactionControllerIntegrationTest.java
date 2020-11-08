@@ -1,6 +1,6 @@
 package com.spring.financetransaction.controller;
 
-import static com.spring.financetransaction.domain.enumeration.OperationType.COMPRA_A_VISTA;
+import static com.spring.financetransaction.domain.enumeration.OperationType.CASH_PURCHASE;
 import static java.math.BigDecimal.valueOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
@@ -27,7 +27,7 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         TransactionCreateDTO.builder()
             .accountId(ACCOUNT_ID)
             .amount(AMOUNT)
-            .operationTypeId(COMPRA_A_VISTA.getCode())
+            .operationTypeId(CASH_PURCHASE.getCode())
             .build();
   }
 

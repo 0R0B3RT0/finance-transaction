@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.time.LocalDateTime;
@@ -19,14 +20,12 @@ public class ModelTest {
     model = new Model() {};
   }
 
-  //  @Test
+  @Test
   public void shouldUpdateCreatedAtUpdateAtEnabledAndIdFieldsWhenBeforePersistMethodAreCalled() {
-    assertThat(model.isNew(), is(true));
-
     model.beforePersist();
 
-    assertThat(model.getId(), notNullValue());
-    assertThat(model.isNew(), is(false));
+    assertThat(model.getId(), nullValue());
+    assertThat(model.isNew(), is(true));
     assertThat(model.getEnabled(), is(true));
     assertThat(model.getCreatedAt(), notNullValue());
     assertThat(model.getUpdatedAt(), notNullValue());
@@ -48,5 +47,17 @@ public class ModelTest {
     model.setDeletedAt(deletedAt);
 
     assertThat(model.getDeletedAt(), equalTo(deletedAt));
+  }
+
+  @Test
+  public void shouldNewwRegister() {
+    assertThat(model.isNew(), is(true));
+  }
+
+  @Test
+  public void shouldNotNewwRegister() {
+    model.setId(1l);
+
+    assertThat(model.isNew(), is(false));
   }
 }

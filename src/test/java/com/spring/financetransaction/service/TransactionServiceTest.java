@@ -1,6 +1,6 @@
 package com.spring.financetransaction.service;
 
-import static com.spring.financetransaction.domain.enumeration.OperationType.COMPRA_A_VISTA;
+import static com.spring.financetransaction.domain.enumeration.OperationType.PAYMENT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
@@ -42,7 +42,7 @@ public class TransactionServiceTest extends BaseUnitTest {
     transactionCreateDTO =
         TransactionCreateDTO.builder()
             .accountId(ACCOUNT_ID)
-            .operationTypeId(COMPRA_A_VISTA.getCode())
+            .operationTypeId(PAYMENT.getCode())
             .amount(AMOUNT)
             .build();
     account = Account.builder().id(ACCOUNT_ID).build();
@@ -50,7 +50,7 @@ public class TransactionServiceTest extends BaseUnitTest {
         Transaction.builder()
             .id(TRANSACTION_ID)
             .amount(AMOUNT)
-            .operationType(COMPRA_A_VISTA)
+            .operationType(PAYMENT)
             .account(account)
             .build();
     transactionDTO = TransactionDTO.builder().transactionId(TRANSACTION_ID).build();
