@@ -6,8 +6,13 @@ Projeto de transação financeira
 * Consulta de contas
 * Cadastro de transação
 
+# Requisitos
+* [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html);
+* [Docker](https://www.docker.com/);
+* [Lombok](https://projectlombok.org/)
 
 # Execução
+_Os comandos a baixo são baseados nos Sistemas Operacionais Linux e macOS._
 ### Iniciar o banco de dados
 ```bash
 sudo docker-compose up
@@ -29,13 +34,3 @@ mvn spring-boot:run
 [![Maven](https://img.shields.io/badge/Maven-3.3-red)](https://www.postgresql.org/docs/12/release-12-4.html)
 [![Postgres](https://img.shields.io/badge/Postgres-12.4-green)](https://www.postgresql.org/docs/12/release-12-4.html)
 
-
-# Requisitos
-* [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html);
-* [Docker](https://www.docker.com/);
-* [docker-compose](https://docs.docker.com/compose/install/#install-compose);
-* [Lombok](https://projectlombok.org/)
-
-
-## Changelog
-- 0.0.1: Configuração da aplicação;
