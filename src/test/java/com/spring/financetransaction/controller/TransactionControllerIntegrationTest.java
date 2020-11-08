@@ -6,14 +6,17 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import com.spring.financetransaction.SpringControllerTest;
-import com.spring.financetransaction.controller.dto.TransactionCreateDTO;
-import io.restassured.RestAssured;
 import java.math.BigDecimal;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.context.jdbc.Sql;
+
+import com.spring.financetransaction.SpringControllerTest;
+import com.spring.financetransaction.controller.dto.TransactionCreateDTO;
+
+import io.restassured.RestAssured;
 
 public class TransactionControllerIntegrationTest extends SpringControllerTest {
   private static final String CONTROLLER_PATH = "/transactions";
@@ -41,7 +44,7 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         .then()
         .assertThat()
         .statusCode(HttpStatus.OK.value())
-        .body("transaction_id", notNullValue());
+        .body("transactionId", notNullValue());
   }
 
   @Test

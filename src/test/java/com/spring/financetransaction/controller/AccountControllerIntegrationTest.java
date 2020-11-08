@@ -65,7 +65,7 @@ public class AccountControllerIntegrationTest extends SpringControllerTest {
         .then()
         .assertThat()
         .statusCode(HttpStatus.OK.value())
-        .body("account_id", equalTo(ACCOUNT_ID))
-        .body("document_number", equalTo(ACCOUNT_DOCUMENT));
+        .body("accountId", equalTo(ACCOUNT_ID))
+        .body("documentNumber", equalTo(ACCOUNT_DOCUMENT));
   }
 }
