@@ -19,12 +19,12 @@ public class AccountMapperTest extends BaseUnitTest {
   @Before
   public void setup() {
     expectedAccountDTO =
-        AccountDTO.builder().accountId(ACCOUNT_ID).documentNumber(ACCOUNT_DOCUMENT).build();
+        AccountDTO.builder().accountId(ACCOUNT_CODE).documentNumber(ACCOUNT_DOCUMENT).build();
   }
 
   @Test
   public void entityToDTO() {
-    Account account = Account.builder().id(ACCOUNT_ID).documentNumber(ACCOUNT_DOCUMENT).build();
+    Account account = Account.builder().code(ACCOUNT_CODE).documentNumber(ACCOUNT_DOCUMENT).build();
 
     AccountDTO accountDTO = accountMapper.toDTO(account);
 

@@ -12,11 +12,9 @@ import com.spring.financetransaction.controller.dto.TransactionCreateDTO;
 import com.spring.financetransaction.domain.dto.TransactionDTO;
 import com.spring.financetransaction.domain.entity.Account;
 import com.spring.financetransaction.domain.entity.Transaction;
-import com.spring.financetransaction.domain.exception.NotFoundedException;
 import com.spring.financetransaction.domain.exception.ValidationException;
-import com.spring.financetransaction.domain.repository.AccountRepository;
 import com.spring.financetransaction.domain.repository.TransactionRepository;
-import java.util.Optional;
+import com.spring.financetransaction.service.query.AccountQueryService;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -33,8 +31,8 @@ public class TransactionServiceTest extends BaseUnitTest {
 
   @InjectMocks private TransactionService transactionService;
   @Mock private ValidationService<TransactionCreateDTO> transactionCreateDTOValidation;
-  @Mock private AccountRepository accountRepository;
   @Mock private TransactionRepository transactionRepository;
+  @Mock private AccountQueryService accountQueryService;
 
   @Rule public ExpectedException expectedException = ExpectedException.none();
 
@@ -42,11 +40,11 @@ public class TransactionServiceTest extends BaseUnitTest {
   public void setup() {
     transactionCreateDTO =
         TransactionCreateDTO.builder()
-            .accountId(ACCOUNT_ID)
+            .accountId(ACCOUNT_CODE)
             .operationTypeId(PAYMENT.getCode())
             .amount(AMOUNT)
             .build();
-    account = Account.builder().id(ACCOUNT_ID).build();
+    account = Account.builder().code(ACCOUNT_CODE).build();
     transaction =
         Transaction.builder()
             .id(TRANSACTION_ID)
@@ -56,17 +54,8 @@ public class TransactionServiceTest extends BaseUnitTest {
             .build();
     transactionDTO = TransactionDTO.builder().transactionId(TRANSACTION_ID).build();
     when(transactionCreateDTOValidation.validateAndThrow(any())).thenCallRealMethod();
-    doReturn(Optional.of(account)).when(accountRepository).findById(ACCOUNT_ID);
+    doReturn(account).when(accountQueryService).findAccountById(ACCOUNT_CODE);
     doReturn(transaction).when(transactionRepository).save(transaction);
-  }
-
-  @Test
-  public void mustBeExceptionWhenThereIsNotAccount() {
-    doReturn(Optional.empty()).when(accountRepository).findById(ACCOUNT_ID);
-    expectedException.expect(NotFoundedException.class);
-    expectedException.expectMessage("{accountId=not founded}");
-
-    transactionService.createTransaction(transactionCreateDTO);
   }
 
   @Test

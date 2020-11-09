@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 @Entity
 @Data
@@ -18,4 +20,8 @@ public class Account extends Model {
 
   @Column(name = "document_number")
   private String documentNumber;
+
+  @Generated(GenerationTime.INSERT)
+  @Column(name = "code")
+  private Long code;
 }

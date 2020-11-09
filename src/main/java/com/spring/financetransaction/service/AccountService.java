@@ -24,7 +24,6 @@ public class AccountService {
         Account.builder().documentNumber(accountCreateDTO.getDocumentNumber()).build();
 
     Account persistedAccount = accountRepository.save(account);
-
     return toDTO(persistedAccount);
   }
 }

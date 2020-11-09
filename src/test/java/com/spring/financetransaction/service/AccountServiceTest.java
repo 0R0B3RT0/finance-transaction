@@ -7,7 +7,6 @@ import static org.mockito.Mockito.when;
 
 import com.spring.financetransaction.BaseUnitTest;
 import com.spring.financetransaction.controller.dto.AccountCreateDTO;
-import com.spring.financetransaction.domain.dto.AccountDTO;
 import com.spring.financetransaction.domain.entity.Account;
 import com.spring.financetransaction.domain.exception.ValidationException;
 import com.spring.financetransaction.domain.repository.AccountRepository;
@@ -19,7 +18,6 @@ import org.mockito.Mock;
 public class AccountServiceTest extends BaseUnitTest {
 
   private AccountCreateDTO accountCreateDTO;
-  private AccountDTO accountDTO;
   private Account account;
 
   @InjectMocks private AccountService accountService;
@@ -29,10 +27,9 @@ public class AccountServiceTest extends BaseUnitTest {
   @Before
   public void setup() {
     accountCreateDTO = AccountCreateDTO.builder().documentNumber(ACCOUNT_DOCUMENT).build();
-    account = Account.builder().id(ACCOUNT_ID).documentNumber(ACCOUNT_DOCUMENT).build();
-    doReturn(account).when(accountRepository).save(account);
-    accountDTO =
-        AccountDTO.builder().accountId(ACCOUNT_ID).documentNumber(ACCOUNT_DOCUMENT).build();
+    account = Account.builder().code(ACCOUNT_CODE).documentNumber(ACCOUNT_DOCUMENT).build();
+    Account accountToSave = Account.builder().documentNumber(ACCOUNT_DOCUMENT).build();
+    doReturn(account).when(accountRepository).save(accountToSave);
   }
 
   @Test

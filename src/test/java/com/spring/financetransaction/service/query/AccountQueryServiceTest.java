@@ -24,16 +24,21 @@ public class AccountQueryServiceTest extends BaseUnitTest {
 
   @Before
   public void setup() {
-    account = Account.builder().id(ACCOUNT_ID).documentNumber(ACCOUNT_DOCUMENT).build();
+    account =
+        Account.builder()
+            .id(ACCOUNT_UUID)
+            .code(ACCOUNT_CODE)
+            .documentNumber(ACCOUNT_DOCUMENT)
+            .build();
     accountDTO =
-        AccountDTO.builder().accountId(ACCOUNT_ID).documentNumber(ACCOUNT_DOCUMENT).build();
+        AccountDTO.builder().accountId(ACCOUNT_CODE).documentNumber(ACCOUNT_DOCUMENT).build();
   }
 
   @Test
   public void mustBeFindWhenExistTheAccount() {
-    doReturn(of(account)).when(accountRepository).findById(ACCOUNT_ID);
+    doReturn(of(account)).when(accountRepository).findByCode(ACCOUNT_CODE);
 
-    AccountDTO account = accountQueryService.findAccountById(ACCOUNT_ID);
+    AccountDTO account = accountQueryService.findAccountDTOById(ACCOUNT_CODE);
 
     assertThat(account, equalTo(accountDTO));
   }

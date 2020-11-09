@@ -45,7 +45,7 @@ public class AccountControllerTest extends BaseUnitTest {
 
   @Test
   public void mustBeFindWhenExistTheAccount() {
-    doReturn(accountDTO).when(accountQueryService).findAccountById(ACCOUNT_ID);
+    doReturn(accountDTO).when(accountQueryService).findAccountDTOById(ACCOUNT_ID);
 
     ResponseEntity<AccountDTO> accountResponse = accountController.getAccountByID(ACCOUNT_ID);
 

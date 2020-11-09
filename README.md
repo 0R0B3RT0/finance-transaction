@@ -41,4 +41,4 @@ mvn spring-boot:run
 [![Postgres](https://img.shields.io/badge/Postgres-12.4-green)](https://www.postgresql.org/docs/12/release-12-4.html)
 
 ## Pontos de melhoria
-* Substituir o id numérico por UUID e utiliar um código sequencial como id da conta;
+~~* Substituir o id numérico por UUID e utiliar um código sequencial como id da conta;~~

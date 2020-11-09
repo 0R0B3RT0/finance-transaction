@@ -53,7 +53,7 @@ public class TransactionControllerIntegrationTest extends SpringControllerTest {
         .then()
         .assertThat()
         .statusCode(HttpStatus.NOT_FOUND.value())
-        .body("message", equalTo("accountId: not founded"));
+        .body("message", equalTo("account: not founded"));
   }
 
   @Test

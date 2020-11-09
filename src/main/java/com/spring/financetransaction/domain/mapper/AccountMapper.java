@@ -7,7 +7,7 @@ public class AccountMapper {
 
   public static AccountDTO toDTO(Account entity) {
     return AccountDTO.builder()
-        .accountId(entity.getId())
+        .accountId(entity.getCode())
         .documentNumber(entity.getDocumentNumber())
         .build();
   }

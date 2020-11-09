@@ -39,6 +39,6 @@ public class AccountController {
   @GetMapping("/{accountId}")
   public ResponseEntity<AccountDTO> getAccountByID(
       @PathVariable(name = "accountId") Long accountId) {
-    return ResponseEntity.ok(accountQueryService.findAccountById(accountId));
+    return ResponseEntity.ok(accountQueryService.findAccountDTOById(accountId));
   }
 }

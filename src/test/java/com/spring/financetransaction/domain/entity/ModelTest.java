@@ -1,10 +1,10 @@
 package com.spring.financetransaction.domain.entity;
 
+import static java.util.UUID.fromString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.time.LocalDateTime;
@@ -24,8 +24,8 @@ public class ModelTest {
   public void shouldUpdateCreatedAtUpdateAtEnabledAndIdFieldsWhenBeforePersistMethodAreCalled() {
     model.beforePersist();
 
-    assertThat(model.getId(), nullValue());
-    assertThat(model.isNew(), is(true));
+    assertThat(model.getId(), notNullValue());
+    assertThat(model.isNew(), is(false));
     assertThat(model.getEnabled(), is(true));
     assertThat(model.getCreatedAt(), notNullValue());
     assertThat(model.getUpdatedAt(), notNullValue());
@@ -56,7 +56,7 @@ public class ModelTest {
 
   @Test
   public void shouldNotNewwRegister() {
-    model.setId(1l);
+    model.setId(fromString("BD8CF80D-B3C2-4D41-B2B3-A9C1AB81FC7E"));
 
     assertThat(model.isNew(), is(false));
   }
