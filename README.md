@@ -31,9 +31,6 @@ mvn spring-boot:run
 * [Find Account](documentation/account-find.md) : `GET /accounts/{accountId}`
 * [Create Transaction](documentation/transaction-create.md) : `POST /transactions`
 
-### Monitoração
-[Hystrix](http://localhost:8080/hystrix/monitor?stream=http%3A%2F%2Flocalhost%3A8080%2Factuator%2Fhystrix.stream)
-
 ## Stack
 [![Java](https://img.shields.io/badge/Java-11-blue)](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-Greenwich.SR3-green)](https://spring.io/blog/2019/09/12/spring-cloud-greenwich-sr3-released)
