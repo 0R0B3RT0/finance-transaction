@@ -13,6 +13,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class TransactionService {
@@ -39,5 +42,11 @@ public class TransactionService {
     Transaction transactionPersisted = transactionRepository.save(transaction);
 
     return toDTO(transactionPersisted);
+  }
+
+
+  public List<Transaction> getTransactions(long accountID) {
+    Account account = accountQueryService.findAccountById(accountID);
+    return transactionRepository.findAllByAccountId(account.getId());
   }
 }

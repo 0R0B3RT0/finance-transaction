@@ -6,7 +6,7 @@ services:
         container_name: postgres-finance-transaction
         image: postgres
         volumes:
-            - ./database/data:/var/lib/postgresql/data
+            - postgres_data:/var/lib/postgresql/data
         environment:
           - POSTGRES_DB=finance-transaction
           - POSTGRES_USER=postgres
@@ -14,3 +14,6 @@ services:
           - POSTGRES_PORT=5432
         ports:
             - "5442:5432"
+
+volumes:
+  postgres_data:

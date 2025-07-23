@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface TransactionRepository extends CrudRepository<Transaction, UUID> {
 
   List<Transaction> findAllByEnabledTrue();
+  List<Transaction> findAllByAccountId(UUID accountID);
 }
